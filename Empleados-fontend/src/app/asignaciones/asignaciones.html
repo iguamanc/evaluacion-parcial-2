@@ -1,0 +1,31 @@
+<h1>Asignaciones</h1>
+<div class="container">
+    <div><button type="button" class="btn btn-success" [routerLink]="['/asignacion/crear']">Nuevo Registro</button></div>
+    <table>
+        <caption>Lista de Asignaciones</caption>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Empleado</th>
+            <th>Departamento</th>
+            <th>Fecha Asignación</th>          
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for(asignacion of lista_asignados$; track asignacion.id; let i = $index){
+            <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ asignacion.empleados.apellidos }}  {{ asignacion.empleados.nombres }}</td>
+            <td>{{ asignacion.departamentos.nombre }}</td>
+            <td>{{ asignacion.fechaAsignacion }}</td>        
+            <td>
+                <button class="btn btn-success" routerLink="/asignacion/editar/{{ asignacion.id }}">Editar</button>
+                <button class="btn btn-danger"  (click)="eliminarasignacion(asignacion.id!)">Eliminar</button>
+                </td>
+            </tr>
+            }
+        
+        </tbody>
+    </table>
+  </div>

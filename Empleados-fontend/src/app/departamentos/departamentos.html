@@ -1,0 +1,33 @@
+<h1>Departamentos</h1>
+<div class="container">
+    <div><button type="button" class="btn btn-success" [routerLink]="['/departamento/crear']">Nuevo Registro</button></div>
+    <table>
+        <caption>Lista de Departamentos</caption>
+        <thead>
+        <tr>
+            <th>Nro</th>
+            <th>Nombre</th>
+            <th>Ubicacion</th>
+            <th>Jefe Dep</th>
+            <th>Extensión</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for(departamento of lista_departamentos$; track departamento.id; let i = $index){
+            <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ departamento.nombre }}</td>
+            <td>{{ departamento.ubicacion }}</td>
+            <td>{{ departamento.jefe_Departamento }}</td>
+            <td>{{ departamento.extension }}</td>        
+            <td>
+                <button class="btn btn-success" routerLink="/departamento/editar/{{ departamento.id }}">Editar</button>
+                <button class="btn btn-danger"  (click)="eliminarDepartamento(departamento.id!)">Eliminar</button>
+                </td>
+            </tr>
+            }
+        
+        </tbody>
+    </table>
+  </div>

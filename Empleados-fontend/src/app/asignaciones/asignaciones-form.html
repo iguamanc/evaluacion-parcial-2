@@ -1,0 +1,50 @@
+
+<div class="form-container">
+    <h1>{{ titulo_formulario }}</h1>
+    <form class="form" [formGroup]="empleadoform" (ngSubmit)="enviar()" novalidate>
+      <div class="form-group" style="display:none">
+        <label for="id">ID</label>
+        <input type="number" id="id" name="id" required>
+      </div>
+
+        <div class="form-group">
+            <label for="empleadosId">Nombres</label>
+            <select id="empleadosId" formControlName="empleadosId" class="form-control" required>
+                <option value="">-- Seleccione un empleado --</option>
+                <option *ngFor="let empleado of empleados" [value]="empleado.id">
+                {{ empleado.nombre }}
+                </option>
+            </select>
+            <div class="invalid-feedback d-block" *ngIf="empleadoform.get('empleadosId')?.touched && empleadoform.get('empleadosId')?.invalid">
+                El nombre es requerido.
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="departamentosId">Departamento</label>
+            <select id="departamentosId" formControlName="departamentosId" class="form-control" required>
+                <option value="">-- Seleccione un departamento --</option>
+                <option *ngFor="let departamento of departamentos" [value]="departamento.id">
+                {{ departamento.nombre }}
+                </option>
+            </select>
+            <div class="invalid-feedback d-block" *ngIf="empleadoform.get('departamentosId')?.touched && empleadoform.get('departamentosId')?.invalid">
+                El departamento es requerido.
+            </div>
+        </div>
+
+      <div class="form-group">
+        <label for="fechaAsignacion">fechaAsignacion</label>
+        <input type="fechaAsignacion" id="email" formControlName="fechaAsignacion" required>
+        <div class="invalid-feedback d-block" *ngIf="empleadoform.get('fechaAsignacion')?.touched && empleadoform.get('fechaAsignacion')?.invalid">
+        El corrreo es requerido.
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" class="btn-primary">Enviar</button>
+        <button type="button" class="btn btn-danger" [routerLink]="['/empleados']">Cancelar</button>      
+      </div>
+    </form>
+  </div>
